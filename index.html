@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MK | SYSTEM ARCHITECT</title>
+    <meta name="description" content="Portfolio of Malik Khelfah, System Architect and Programmer.">
+    <title>Malik Khelfah | System Architect</title>
     <link rel="icon" type="image/png" href="mk-logo.png">
     
     <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&f[]=general-sans@500,600,700&display=swap" rel="stylesheet">
@@ -13,182 +14,253 @@
 </head>
 <body>
 
-    <div id="intro-overlay">
-        <div class="scanner-container">
-            <div class="scan-ring"></div>
-            <div class="logo-glow"></div>
-            <div class="intro-logo" id="logo-el"></div>
-        </div>
-        <div class="scan-status" id="status-text">INITIALIZING...</div>
-<button class="ui-btn" id="enter-btn">
-    <span>
-        ENTER SYSTEM
-    </span>
-</button>    </div>
-
     <nav class="navbar">
-        <div class="nav-brand">
-            <img src="mk-logo.png" alt="MK Logo" class="nav-logo-img">
-            <span class="brand-text">MALIK KHELFAH</span>
-        </div>
+        <div class="nav-container">
+            <a href="#" class="nav-brand">
+                <img src="mk-logo.png" alt="MK Logo" class="nav-logo-img">
+                <span class="brand-text">MALIK KHELFAH</span>
+            </a>
 
-        <ul class="nav-links">
-            <li><a href="#about">INTEL</a></li>
-            <li><a href="#experience">LOGS</a></li>
-            <li><a href="#projects">PROJECTS</a></li>
-            <li><a href="#contact">COMMS</a></li>
-        </ul>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
 
-        <div class="mobile-toggle">
-            <label class="hamburger">
-                <input type="checkbox" id="menu-btn">
-                <svg viewBox="0 0 32 32">
-                    <path class="line line-top-bottom" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"></path>
-                    <path class="line" d="M7 16 27 16"></path>
-                </svg>
-            </label>
+            <div class="mobile-toggle">
+                <label class="hamburger">
+                    <input type="checkbox" id="menu-btn">
+                    <svg viewBox="0 0 32 32">
+                        <path class="line line-top-bottom" d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"></path>
+                        <path class="line" d="M7 16 27 16"></path>
+                    </svg>
+                </label>
+            </div>
         </div>
     </nav>
 
     <div class="mobile-menu" id="mobile-menu">
-        <a href="#about" onclick="closeMenu()">INTEL</a>
-        <a href="#experience" onclick="closeMenu()">LOGS</a>
-        <a href="#projects" onclick="closeMenu()">PROJECTS</a>
-        <a href="#contact" onclick="closeMenu()">COMMS</a>
+        <a href="#about" class="mobile-link">About</a>
+        <a href="#skills" class="mobile-link">Skills</a>
+        <a href="#experience" class="mobile-link">Experience</a>
+        <a href="#projects" class="mobile-link">Projects</a>
+        <a href="#contact" class="mobile-link">Contact</a>
     </div>
 
-    <div id="interface">
+    <main id="interface">
         
-        <div class="hero-section">
-            <div class="hud-panel hero-panel">
-                <div class="status-badge"><span class="pulse-dot"></span> SYSTEM ONLINE</div>
-                <h1>Welcome to <br><span class="accent-text">The Architecture</span></h1>
+        <header class="hero-section">
+            <div class="hero-content">
+                <div class="status-badge">SOFTWARE ENGINEER & ARCHITECT</div>
+                <h1>Code that connects <br>Hardware to Cloud.</h1>
                 <p class="hero-sub">
-                    I architect the convergence of <strong>Physical Hardware</strong>, <strong>Embedded Firmware</strong>, and <strong>Cloud Security</strong>.
-                    <br>From the PCB to the AWS Cluster, I own the stack.
+                    I am a programmer first. I architect secure systems by bridging the gap between low-level firmware and high-level cloud infrastructure.
                 </p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn primary-btn">View Projects</a>
+                    
+                    <a href="Malik_Khelfah_CV.pdf" target="_blank" class="btn secondary-btn">
+                        <i class="fa-solid fa-download"></i> Resume
+                    </a>
+                </div>
             </div>
-        </div>
+        </header>
 
         <section id="about" class="grid-section">
-            <div class="hud-panel full-width">
-                <h2><i class="fa-solid fa-user-astronaut"></i> Mission Profile</h2>
+            <div class="panel full-width">
+                <h2>About Me</h2>
                 <div class="about-content">
                     <div class="about-text">
                         <p>
-                            I am not just a developer; I am a <strong>System Architect</strong>. My expertise lies in bridging the gap between tangible hardware and abstract cloud infrastructure. 
-                            I design custom mechanical peripherals, write the low-level <strong>QMK/C++ firmware</strong> that drives them, and build the <strong>secure cloud environments</strong> they communicate with.
+                            I specialize in <strong>Software Development</strong> and <strong>System Architecture</strong>. Unlike traditional cybersecurity analysts who only protect systems, I <em>build</em> them. I write the code that runs on the hardware, I develop the backend logic in Python/Java, and I secure the cloud infrastructure.
                         </p>
-                    </div>
-                    
-                    <div class="tech-preview">
-                        <h3>Diagnostic Toolset</h3>
-                        <div class="skill-grid">
-                            <div class="skill-item">Kali Linux</div>
-                            <div class="skill-item">QMK Firmware</div>
-                            <div class="skill-item">C++</div>
-                            <div class="skill-item">Python</div>
-                            <div class="skill-item">Java</div>
-                            <div class="skill-item">Splunk SOC</div>
+                        
+                        <div style="margin-top: 25px; border-top: 1px solid var(--border); padding-top: 20px;">
+                            <h3 style="font-size: 1rem; color: #fff; margin-bottom: 10px;">Education</h3>
+                            <p style="margin-bottom: 5px; color: var(--text-main); font-weight: 600;">
+                                <i class="fa-solid fa-graduation-cap" style="color: var(--accent); margin-right: 8px;"></i>
+                                BSc. Cybersecurity & Cloud Computing
+                            </p>
+                            <p style="font-size: 0.9rem; color: var(--text-muted);">
+                                Applied Science Private University • Graduated: Jan 2026
+                            </p>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="grid-section">
+            <div class="panel">
+                <h2><i class="fa-solid fa-code"></i> Technical Skills</h2>
+                <div class="skill-grid">
+                    <code class="skill-item">Python</code>
+                    <code class="skill-item">Java</code>
+                    <code class="skill-item">C++</code>
+                    <code class="skill-item">HTML/CSS</code>
+                    <code class="skill-item">Ubuntu</code>
+                    <code class="skill-item">Wireshark</code>
+                    <code class="skill-item">QMK Firmware</code>
+                    <code class="skill-item">Kali Linux</code>
+                    <code class="skill-item">Splunk SOC</code>
+                </div>
+            </div>
+
+            <div class="panel">
+                <h2><i class="fa-solid fa-users"></i> Soft Skills</h2>
+                <div class="skill-grid">
+                    <span class="skill-item">Teamwork & Collaboration</span>
+                    <span class="skill-item">High-Volume Problem Solving</span>
+                    <span class="skill-item">Working Under Stress</span>
+                    <span class="skill-item">Effective Communication</span>
+                    <span class="skill-item">Customer Handling</span>
                 </div>
             </div>
         </section>
 
         <section id="experience" class="grid-section">
-            <div class="hud-panel full-width">
-                <h2><i class="fa-solid fa-history"></i> Deployment History</h2>
-                <div class="log-entry">
-                    <div class="log-date">JUN 2025 - SEP 2025 // 16 WEEKS</div>
-                    <div class="log-details">
-                        <h3>Cybersecurity Internship @ <span class="accent-text">IT SECURITY C&T</span></h3>
-                        <p class="log-loc">AMMAN, JORDAN</p>
-                        <p>Intensive field operations focusing on critical infrastructure defense and SOC analysis.</p>
-                        <div class="log-tags">
-                            <span>NETWORK DEFENSE</span>
-                            <span>SOC ANALYSIS</span>
-                            <span>ETHICAL HACKING</span>
-                            <span>DIGITAL FORENSICS</span>
-                        </div>
+            <div class="panel full-width">
+                <h2>Experience</h2>
+                
+                <article class="log-entry">
+                    <div class="log-header">
+                        <h3>Cybersecurity Intern</h3>
+                        <span class="company-name">IT SECURITY C&T</span>
                     </div>
-                </div>
+                    <div class="log-meta">
+                        <span>Amman, Jordan</span> • <span>Jun 2025 - Sep 2025</span>
+                    </div>
+                    <p class="log-desc">
+                        Completed 16 weeks of intensive field operations. Gained practical knowledge in SOC operations, incident response, and securing digital environments against vulnerabilities.
+                    </p>
+                    <div class="log-tags">
+                        <span>Network Defense</span>
+                        <span>Ethical Hacking</span>
+                        <span>Digital Forensics</span>
+                    </div>
+                </article>
+
+                <article class="log-entry" style="margin-top: 40px;">
+                    <div class="log-header">
+                        <h3>Customer Support Representative</h3>
+                        <span class="company-name">CRYSTEL</span>
+                    </div>
+                    <div class="log-meta">
+                        <span>Amman, Jordan</span> • <span>Feb 2022 – Jun 2022</span>
+                    </div>
+                    <p class="log-desc">
+                        Worked in a high-paced team environment handling large volumes of customer inquiries. Developed strong stress management skills and professionalism while solving complex client issues efficiently.
+                    </p>
+                    <div class="log-tags">
+                        <span>Team Collaboration</span>
+                        <span>Crisis Management</span>
+                        <span>Communication</span>
+                    </div>
+                </article>
+
             </div>
         </section>
 
         <section id="projects" class="grid-section">
             
-            <div class="hud-panel product-card full-width" onclick="window.open('https://macroflow.info', '_blank')">
-                <div class="prod-badge">COMMERCIAL PRODUCT</div>
-                <div class="prod-visual"><i class="fa-solid fa-microchip"></i></div>
-                <div class="prod-info">
+            <div class="full-width" style="margin-bottom: -10px;">
+                <h2>My Projects</h2>
+                <p style="color: var(--text-muted);">Software and hardware architectures I personally designed and engineered.</p>
+            </div>
+
+            <article class="panel product-card full-width" onclick="window.open('https://macroflow.info', '_blank')">
+                <div class="prod-content">
+                    <div class="badge-container">
+                        <div class="prod-badge">COMMERCIAL PRODUCT</div>
+                    </div>
                     <h2>MacroFlow System</h2>
-                    <p>End-to-end engineered mechanical keypad ecosystem. Custom PCB, QMK Firmware, and Desktop Control App.</p>
+                    
+                    <p class="role-text" style="margin-top: 5px; margin-bottom: 10px;">
+                        <span style="color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; border: 1px solid var(--accent); padding: 2px 8px; border-radius: 4px;">
+                            MY ROLE: Lead Engineer
+                        </span>
+                    </p>
+
+                    <p>I engineered this complete ecosystem—hardware and software—specifically for commercial sale. I built the custom PCB using QMK firmware and developed the full support platform using Python, HTML, CSS, and JavaScript.</p>
                     <div class="tags">
-                        <span>HARDWARE</span><span>C++</span><span>PRODUCT</span>
+                        <span>QMK Firmware</span><span>Python</span><span>HTML/JS</span><span>Hardware Sales</span>
                     </div>
                 </div>
-            </div>
+                <div class="prod-visual">
+                    <i class="fa-solid fa-microchip" aria-hidden="true"></i>
+                </div>
+            </article>
 
-            <div class="hud-panel project-card" onclick="window.open('https://steglens.online', '_blank')">
-                <div class="icon-box"><i class="fa-solid fa-user-secret"></i></div>
+            <article class="panel project-card" onclick="window.open('https://steglens.online', '_blank')">
+                <div class="icon-box"><i class="fa-solid fa-user-secret" aria-hidden="true"></i></div>
                 <div class="proj-text">
                     <h2>Steglens</h2>
-                    <p>Military-grade steganography engine with AES-128 encryption.</p>
-                    <div class="tags"><span>PYTHON</span><span>SECURITY</span></div>
-                </div>
-            </div>
+                    
+                    <p class="role-text" style="margin-top: 5px; margin-bottom: 10px;">
+                        <span style="color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; border: 1px solid var(--accent); padding: 2px 8px; border-radius: 4px;">
+                            MY ROLE: Graduation Project Lead
+                        </span>
+                    </p>
 
-            <div class="hud-panel project-card" onclick="window.open('https://phoenix-pub.com', '_blank')">
-                <div class="icon-box"><i class="fa-solid fa-server"></i></div>
+                    <p>My graduation project designed to democratize security. I built a user-friendly backend that allows regular users to easily use advanced steganography tools without technical knowledge.</p>
+                    <div class="tags"><span>Python</span><span>Cryptography</span><span>Python</span><span>HTML/CSS</span><span>JavaScript</span></div>
+                </div>
+            </article>
+
+            <article class="panel project-card" onclick="window.open('https://phoenix-pub.com', '_blank')">
+                <div class="icon-box"><i class="fa-solid fa-server" aria-hidden="true"></i></div>
                 <div class="proj-text">
                     <h2>Phoenix-Pub</h2>
-                    <p>Enterprise publishing architecture with command & control admin.</p>
-                    <div class="tags"><span>FLASK</span><span>CLOUD</span></div>
+                    
+                    <p class="role-text" style="margin-top: 5px; margin-bottom: 10px;">
+                        <span style="color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; border: 1px solid var(--accent); padding: 2px 8px; border-radius: 4px;">
+                            MY ROLE: System Architect
+                        </span>
+                    </p>
+
+                    <p>A comprehensive digital platform built for a publishing house. I architected the entire website using HTML, CSS, JavaScript, and Python to handle inventory and publishing workflows.</p>
+                    <div class="tags"><span>Python</span><span>HTML/CSS</span><span>JavaScript</span></div>
                 </div>
-            </div>
+            </article>
 
         </section>
 
         <section id="contact" class="grid-section">
-            <div class="hud-panel full-width contact-panel">
-                <h2>Initialize Comms</h2>
-                <p>Secure channels are open.</p>
+            <div class="panel full-width contact-panel">
+                <h2>Get In Touch</h2>
+                <p>Open for programming and engineering opportunities.</p>
                 
                 <div class="social-grid">
-                    <a href="https://www.instagram.com/wmalik_kh?igsh=a2ExMzZzajhqbmw%3D&utm_source=qr" target="_blank" class="social-box insta">
-                        <i class="fa-brands fa-instagram"></i>
-                        <span>Instagram</span>
+                    <a href="https://www.linkedin.com/in/malik-khelfah?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="social-link">
+                        <i class="fa-brands fa-linkedin"></i> LinkedIn
                     </a>
                     
-                    <a href="https://www.linkedin.com/in/malik-khelfah?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="social-box linked">
-                        <i class="fa-brands fa-linkedin"></i>
-                        <span>LinkedIn</span>
+                    <a href="https://github.com/wmalikkh" target="_blank" class="social-link">
+                        <i class="fa-brands fa-github"></i> GitHub
                     </a>
 
-                    <a href="https://x.com/wmalik_kh?s=21" target="_blank" class="social-box x-twit">
-                        <i class="fa-brands fa-x-twitter"></i>
-                        <span>X / Twitter</span>
+                    <a href="https://x.com/wmalik_kh?s=21" target="_blank" class="social-link">
+                        <i class="fa-brands fa-x-twitter"></i> Twitter
                     </a>
 
-                    <a href="https://t.me/WMALIK_KH" target="_blank" class="social-box tele">
-                        <i class="fa-brands fa-telegram"></i>
-                        <span>Telegram</span>
+                    <a href="https://t.me/WMALIK_KH" target="_blank" class="social-link">
+                        <i class="fa-brands fa-telegram"></i> Telegram
                     </a>
-
-                    <a href="https://github.com/wmalikkh" target="_blank" class="social-box git">
-                        <i class="fa-brands fa-github"></i>
-                        <span>GitHub</span>
+                    
+                    <a href="https://www.instagram.com/wmalik_kh?igsh=a2ExMzZzajhqbmw%3D&utm_source=qr" target="_blank" class="social-link">
+                        <i class="fa-brands fa-instagram"></i> Instagram
                     </a>
                 </div>
             </div>
         </section>
 
-        <div class="sys-footer">
-            MK SYSTEMS ARCHITECTURE // AUTHENTICATED SESSION // © 2026
-        </div>
+        <footer class="sys-footer">
+            <p>&copy; 2026 Malik Khelfah. All rights reserved.</p>
+        </footer>
 
-    </div>
+    </main>
 
     <script src="script.js"></script>
 </body>
