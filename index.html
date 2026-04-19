@@ -1,300 +1,747 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Portfolio of Malik Khelfah, System Architect and Programmer." />
-  <title>Malik Khelfah | System Architect</title>
-  <link rel="icon" type="image/png" href="mk-logo.png" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Malik Khelfah — Full Stack Developer based in Amman, Jordan."/>
+<title>Malik Khelfah — Full Stack Developer</title>
+<meta property="og:title" content="Malik Khelfah | Full Stack Developer"/>
+<meta property="og:description" content="Building secure, scalable web applications."/>
+<meta property="og:type" content="website"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Syne:wght@400;500;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"/>
+<style>
+:root{
+  --bg:#07030F;
+  --surface:#0F0820;
+  --card:#130B26;
+  --v:#8B5CF6;
+  --v2:#5B21B6;
+  --v3:#A78BFA;
+  --glow:rgba(139,92,246,0.15);
+  --text:#E8E0F8;
+  --muted:#6B5A8A;
+  --border:rgba(139,92,246,0.15);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Syne',sans-serif;
+  overflow-x:hidden;
+  cursor:none;
+}
 
-  <!-- Optional: Open Graph (nice LinkedIn preview) -->
-  <meta property="og:title" content="Malik Khelfah | System Architect" />
-  <meta property="og:description" content="Code that connects Hardware to Cloud." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="mk-logo.png" />
+/* CURSOR */
+#cursor{
+  position:fixed;width:10px;height:10px;
+  background:var(--v);border-radius:50%;
+  pointer-events:none;z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:width .2s,height .2s;
+  box-shadow:0 0 12px var(--v),0 0 24px var(--v);
+}
+#cursor-ring{
+  position:fixed;width:36px;height:36px;
+  border:1px solid rgba(139,92,246,0.5);
+  border-radius:50%;pointer-events:none;z-index:9998;
+  transform:translate(-50%,-50%);
+  transition:transform .12s ease-out,width .2s,height .2s;
+}
 
-  <link href="https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&f[]=general-sans@500,600,700&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
-  <link rel="stylesheet" href="style.css" />
+/* NAV */
+nav{
+  position:fixed;top:0;width:100%;z-index:100;
+  padding:1.2rem 4rem;
+  display:flex;justify-content:space-between;align-items:center;
+  background:rgba(7,3,15,0.75);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo{
+  font-family:'Orbitron',sans-serif;
+  font-weight:900;font-size:1.1rem;
+  color:var(--v);letter-spacing:3px;
+}
+.nav-links{display:flex;gap:2.5rem;list-style:none;}
+.nav-links a{
+  font-size:.78rem;letter-spacing:2px;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;transition:color .2s;
+  position:relative;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-4px;left:0;
+  width:0;height:1px;background:var(--v);transition:width .3s;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--v);}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%;}
+
+/* HERO */
+#hero{
+  position:relative;height:100vh;
+  display:flex;flex-direction:column;
+  justify-content:center;align-items:flex-start;
+  padding:0 8vw;overflow:hidden;
+}
+#canvas-bg{
+  position:absolute;top:0;left:0;
+  width:100%;height:100%;z-index:0;opacity:.55;
+}
+.hero-tag{
+  font-size:.72rem;letter-spacing:4px;color:var(--v);
+  text-transform:uppercase;margin-bottom:1.5rem;z-index:1;
+  opacity:0;animation:fadeUp .8s .3s forwards;
+}
+.hero-name{
+  font-family:'Orbitron',sans-serif;
+  font-size:clamp(3rem,8vw,7rem);
+  font-weight:900;line-height:1;
+  z-index:1;margin-bottom:1rem;
+  opacity:0;animation:fadeUp .8s .5s forwards;
+  color:var(--text);
+}
+.hero-name .accent{color:var(--v3);}
+.glitch{position:relative;display:inline-block;}
+.glitch::before,.glitch::after{
+  content:attr(data-text);
+  position:absolute;top:0;left:0;width:100%;height:100%;
+}
+.glitch::before{
+  color:var(--v);
+  animation:glitch1 4s infinite steps(2,end);
+  clip-path:polygon(0 0,100% 0,100% 35%,0 35%);
+}
+.glitch::after{
+  color:#ff2d78;
+  animation:glitch2 4s infinite steps(2,end);
+  clip-path:polygon(0 65%,100% 65%,100% 100%,0 100%);
+}
+@keyframes glitch1{0%,90%{transform:translate(0);}91%{transform:translate(-3px,1px);}93%{transform:translate(3px,-1px);}95%{transform:translate(-2px);}100%{transform:translate(0);}}
+@keyframes glitch2{0%,88%{transform:translate(0);}89%{transform:translate(3px,1px);}92%{transform:translate(-3px,-1px);}94%{transform:translate(2px);}100%{transform:translate(0);}}
+.hero-sub{
+  font-size:clamp(.95rem,2.2vw,1.35rem);color:var(--muted);
+  z-index:1;min-height:2rem;margin-bottom:2.5rem;
+  opacity:0;animation:fadeUp .8s .7s forwards;
+}
+.hero-sub span{color:var(--v3);}
+.cursor-blink{
+  display:inline-block;width:2px;height:1.1em;
+  background:var(--v);vertical-align:text-bottom;
+  animation:blink .7s step-end infinite;
+}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+.hero-btns{
+  display:flex;gap:1.2rem;z-index:1;
+  opacity:0;animation:fadeUp .8s .9s forwards;
+}
+.btn-primary{
+  padding:.85rem 2.2rem;border:1px solid var(--v);
+  background:transparent;color:var(--v);
+  font-family:'Syne',sans-serif;font-size:.82rem;
+  letter-spacing:2px;text-transform:uppercase;text-decoration:none;
+  position:relative;overflow:hidden;transition:color .3s;
+}
+.btn-primary::before{
+  content:'';position:absolute;inset:0;
+  background:var(--v);transform:translateX(-100%);
+  transition:transform .3s ease;z-index:-1;
+}
+.btn-primary:hover{color:var(--bg);}
+.btn-primary:hover::before{transform:translateX(0);}
+.btn-ghost{
+  padding:.85rem 2.2rem;border:1px solid var(--border);
+  background:transparent;color:var(--muted);
+  font-family:'Syne',sans-serif;font-size:.82rem;
+  letter-spacing:2px;text-transform:uppercase;text-decoration:none;
+  transition:border-color .3s,color .3s;
+}
+.btn-ghost:hover{border-color:var(--v);color:var(--v);}
+.scroll-hint{
+  position:absolute;bottom:2.5rem;left:50%;
+  transform:translateX(-50%);z-index:1;
+  display:flex;flex-direction:column;align-items:center;gap:.5rem;
+  color:var(--muted);font-size:.68rem;letter-spacing:3px;
+  text-transform:uppercase;animation:bounce 2s infinite;
+}
+.scroll-line{width:1px;height:50px;background:linear-gradient(var(--v),transparent);}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(8px);}}
+
+/* SECTIONS */
+section{padding:8rem 8vw;}
+.section-label{font-size:.68rem;letter-spacing:4px;color:var(--v);text-transform:uppercase;margin-bottom:.8rem;}
+.section-title{
+  font-family:'Orbitron',sans-serif;
+  font-size:clamp(1.8rem,4.5vw,3.2rem);
+  font-weight:700;margin-bottom:4rem;color:var(--text);
+}
+.section-title span{color:var(--v3);}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s,transform .8s;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-left{opacity:0;transform:translateX(-40px);transition:opacity .8s,transform .8s;}
+.reveal-left.visible{opacity:1;transform:translateX(0);}
+
+/* ABOUT */
+#about .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center;}
+.about-text p{color:var(--muted);line-height:1.9;margin-bottom:1.2rem;font-size:.98rem;}
+.about-text p strong{color:var(--v3);}
+.about-stats{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:2.5rem;}
+.stat-box{
+  padding:1.5rem;border:1px solid var(--border);
+  background:var(--card);position:relative;overflow:hidden;
+}
+.stat-box::before{
+  content:'';position:absolute;top:0;left:0;
+  width:3px;height:100%;background:var(--v);
+}
+.stat-num{font-family:'Orbitron',sans-serif;font-size:2rem;font-weight:900;color:var(--v);}
+.stat-label{font-size:.72rem;color:var(--muted);letter-spacing:1px;margin-top:.3rem;}
+.about-visual{position:relative;display:flex;justify-content:center;align-items:center;}
+.hex-frame{width:300px;height:300px;position:relative;}
+.hex-frame .ring{
+  position:absolute;inset:0;border:1px solid var(--border);
+  border-radius:50%;animation:spinSlow 20s linear infinite;
+}
+.hex-frame .ring2{
+  inset:20px;border-color:rgba(139,92,246,0.08);
+  animation:spinSlow 30s linear infinite reverse;
+}
+.hex-frame .dot-ring{position:absolute;inset:0;animation:spinSlow 15s linear infinite;}
+.hex-frame .dot{
+  position:absolute;width:6px;height:6px;
+  background:var(--v);border-radius:50%;
+  box-shadow:0 0 8px var(--v);
+  top:calc(50% - 3px);left:-3px;
+  transform-origin:calc(150px + 3px) 3px;
+}
+.hex-frame .dot:nth-child(2){transform:rotate(120deg);}
+.hex-frame .dot:nth-child(3){transform:rotate(240deg);}
+.hex-center{
+  position:absolute;font-family:'Orbitron',sans-serif;
+  font-weight:900;font-size:1.2rem;color:var(--v3);
+  text-align:center;letter-spacing:2px;
+}
+.hex-center small{display:block;font-family:'Syne',sans-serif;font-size:.6rem;color:var(--muted);letter-spacing:3px;margin-top:.3rem;}
+@keyframes spinSlow{to{transform:rotate(360deg);}}
+
+/* SKILLS */
+#skills .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2rem;}
+.skill-cat{
+  padding:2rem;border:1px solid var(--border);
+  background:var(--card);position:relative;overflow:hidden;
+  transition:border-color .3s,transform .3s;
+}
+.skill-cat:hover{border-color:rgba(139,92,246,0.45);transform:translateY(-4px);}
+.skill-cat::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--v);transition:width .4s;}
+.skill-cat:hover::after{width:100%;}
+.skill-cat-title{
+  font-family:'Orbitron',sans-serif;font-size:.75rem;
+  font-weight:700;color:var(--v);letter-spacing:2px;
+  margin-bottom:1.2rem;text-transform:uppercase;
+}
+.skill-tags{display:flex;flex-wrap:wrap;gap:.6rem;}
+.tag{
+  padding:.32rem .85rem;border:1px solid var(--border);
+  font-size:.72rem;color:var(--muted);letter-spacing:1px;
+  transition:all .2s;background:transparent;
+}
+.tag:hover{border-color:var(--v);color:var(--v);background:var(--glow);}
+
+/* PROJECTS */
+#projects .projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:2rem;}
+.project-card{
+  border:1px solid var(--border);background:var(--card);
+  padding:2.5rem;position:relative;overflow:hidden;
+  transition:transform .4s,border-color .3s,box-shadow .3s;
+}
+.project-card:hover{
+  transform:translateY(-8px);
+  border-color:rgba(139,92,246,0.5);
+  box-shadow:0 20px 60px rgba(139,92,246,0.08);
+}
+.project-card::before{
+  content:'';position:absolute;top:0;right:0;
+  width:100px;height:100px;
+  background:radial-gradient(circle at top right,rgba(139,92,246,0.1),transparent 70%);
+  pointer-events:none;
+}
+.project-num{font-family:'Orbitron',sans-serif;font-size:.68rem;color:var(--muted);letter-spacing:3px;margin-bottom:1.5rem;}
+.project-title{font-family:'Orbitron',sans-serif;font-size:1.25rem;font-weight:700;color:var(--text);margin-bottom:.8rem;}
+.project-desc{color:var(--muted);font-size:.88rem;line-height:1.8;margin-bottom:1.5rem;}
+.project-tech{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.8rem;}
+.tech-pill{
+  padding:.22rem .7rem;
+  background:rgba(139,92,246,0.07);
+  border:1px solid rgba(139,92,246,0.22);
+  font-size:.68rem;color:var(--v);letter-spacing:1px;
+}
+.project-links{display:flex;gap:1rem;align-items:center;}
+.project-link{
+  font-size:.72rem;letter-spacing:2px;color:var(--v);
+  text-decoration:none;text-transform:uppercase;
+  display:flex;align-items:center;gap:.4rem;transition:gap .2s;
+}
+.project-link:hover{gap:.7rem;}
+.project-link.private{color:var(--muted);font-size:.72rem;letter-spacing:1px;font-style:italic;}
+
+/* EXPERIENCE */
+#experience .timeline{position:relative;padding-left:3rem;}
+#experience .timeline::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:1px;
+  background:linear-gradient(var(--v),var(--v2),transparent);
+}
+.tl-item{position:relative;margin-bottom:3.5rem;}
+.tl-item::before{
+  content:'';position:absolute;left:-3rem;top:.35rem;
+  width:10px;height:10px;border-radius:50%;
+  background:var(--v);box-shadow:0 0 12px var(--v);
+  transform:translateX(-50%);margin-left:1px;
+}
+.tl-date{font-size:.68rem;letter-spacing:3px;color:var(--v);text-transform:uppercase;margin-bottom:.5rem;}
+.tl-title{font-family:'Orbitron',sans-serif;font-size:1.05rem;font-weight:700;color:var(--text);margin-bottom:.3rem;}
+.tl-company{font-size:.83rem;color:var(--v3);margin-bottom:.8rem;}
+.tl-desc{color:var(--muted);font-size:.88rem;line-height:1.8;}
+.tl-desc li{margin-bottom:.4rem;list-style:none;padding-left:1rem;position:relative;}
+.tl-desc li::before{content:'›';position:absolute;left:0;color:var(--v);}
+
+/* CONTACT */
+#contact .contact-inner{max-width:640px;}
+#contact p.contact-sub{color:var(--muted);line-height:1.9;font-size:.98rem;margin-bottom:2.5rem;}
+.contact-links{display:flex;flex-direction:column;gap:.9rem;margin-bottom:2.5rem;}
+.contact-link{
+  display:flex;align-items:center;gap:1rem;
+  text-decoration:none;color:var(--muted);font-size:.9rem;
+  padding:.9rem 1.2rem;border:1px solid var(--border);
+  transition:all .3s;
+}
+.contact-link:hover{border-color:var(--v);color:var(--v);background:var(--glow);transform:translateX(6px);}
+.contact-link-icon{
+  width:34px;height:34px;border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.85rem;color:var(--v);flex-shrink:0;transition:background .3s,color .3s;
+}
+.contact-link:hover .contact-link-icon{background:var(--v);color:var(--bg);}
+.contact-dl{
+  display:inline-flex;align-items:center;gap:.8rem;
+  padding:.9rem 2.2rem;border:1px solid var(--v);
+  color:var(--v);text-decoration:none;
+  font-size:.82rem;letter-spacing:2px;text-transform:uppercase;
+  position:relative;overflow:hidden;transition:color .3s;
+}
+.contact-dl::before{
+  content:'';position:absolute;inset:0;background:var(--v);
+  transform:translateX(-100%);transition:transform .3s;z-index:-1;
+}
+.contact-dl:hover{color:var(--bg);}
+.contact-dl:hover::before{transform:translateX(0);}
+
+/* FOOTER */
+footer{
+  padding:2rem 8vw;border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;align-items:center;
+  color:var(--muted);font-size:.72rem;letter-spacing:1px;
+}
+footer span{color:var(--v);}
+
+/* UTILS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px);}to{opacity:1;transform:translateY(0);}}
+::selection{background:rgba(139,92,246,0.2);color:var(--v3);}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--v2);}
+
+@media(max-width:768px){
+  nav{padding:1rem 1.5rem;}
+  .nav-links{display:none;}
+  section{padding:5rem 1.5rem;}
+  #about .about-grid{grid-template-columns:1fr;}
+  .about-visual{display:none;}
+  .hero-name{font-size:2.6rem;}
+}
+</style>
 </head>
-
 <body>
-  <nav class="navbar">
-    <div class="nav-container">
-      <!-- Changed from # to #interface so it scrolls to top section cleanly -->
-      <a href="#interface" class="nav-brand" aria-label="Go to top">
-        <img src="mk-logo.png" alt="MK Logo" class="nav-logo-img" />
-        <span class="brand-text">MALIK KHELFAH</span>
-      </a>
 
-      <ul class="nav-links" aria-label="Primary navigation">
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
 
-      <div class="mobile-toggle">
-        <!-- Added aria-label for accessibility -->
-        <label class="hamburger" aria-label="Open mobile menu">
-          <input type="checkbox" id="menu-btn" aria-controls="mobile-menu" aria-label="Toggle mobile menu" />
-          <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false">
-            <path
-              class="line line-top-bottom"
-              d="M27 10 13 10C10.8 10 9 8.2 9 6 9 3.5 10.8 2 13 2 15.2 2 17 3.8 17 6L17 26C17 28.2 18.8 30 21 30 23.2 30 25 28.2 25 26 25 23.8 23.2 22 21 22L7 22"
-            ></path>
-            <path class="line" d="M7 16 27 16"></path>
-          </svg>
-        </label>
+<nav id="navbar">
+  <div class="nav-logo">MK</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <canvas id="canvas-bg"></canvas>
+  <p class="hero-tag">Full Stack Developer · Amman, Jordan</p>
+  <h1 class="hero-name">
+    <span class="glitch" data-text="MALIK">MALIK</span><br>
+    <span class="accent">KHELFAH</span>
+  </h1>
+  <p class="hero-sub" id="typewriter"><span></span><span class="cursor-blink"></span></p>
+  <div class="hero-btns">
+    <a href="#projects" class="btn-primary">View Work</a>
+    <a href="Malik_Khelfah_CV.pdf" target="_blank" rel="noopener noreferrer" class="btn-ghost">
+      <i class="fa-solid fa-download" style="margin-right:.5rem;font-size:.8rem;"></i>Download CV
+    </a>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text reveal-left">
+      <p class="section-label">About Me</p>
+      <h2 class="section-title">Building Things<br>That <span>Matter</span></h2>
+      <p>I'm a <strong>Full Stack Developer</strong> based in Amman, Jordan. Fresh graduate in Cybersecurity & Cloud Computing who genuinely loves coding — from crafting web apps to engineering hardware that ships to real customers.</p>
+      <p>My background spans <strong>backend development with Python & Flask</strong>, cloud infrastructure on AWS and Hetzner, hardware engineering, and security. I take products from idea to live deployment and care deeply about the details that make software feel right.</p>
+      <p>I've competed in <strong>CTF competitions</strong>, built commercial hardware that reached market, and shipped multiple full-stack apps.</p>
+      <div class="about-stats">
+        <div class="stat-box">
+          <div class="stat-num">3+</div>
+          <div class="stat-label">Deployed Projects</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">2+</div>
+          <div class="stat-label">Years Building</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">CTF</div>
+          <div class="stat-label">Competitor</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-num">HW+SW</div>
+          <div class="stat-label">End-to-End</div>
+        </div>
       </div>
     </div>
-  </nav>
-
-  <div class="mobile-menu" id="mobile-menu">
-    <a href="#about" class="mobile-link">About</a>
-    <a href="#skills" class="mobile-link">Skills</a>
-    <a href="#experience" class="mobile-link">Experience</a>
-    <a href="#projects" class="mobile-link">Projects</a>
-    <a href="#contact" class="mobile-link">Contact</a>
+    <div class="about-visual reveal">
+      <div class="hex-frame">
+        <div class="ring"></div>
+        <div class="ring ring2"></div>
+        <div class="dot-ring">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+        <div class="hex-center">
+          MALIK<br>KHELFAH
+          <small>FULL STACK DEV</small>
+        </div>
+      </div>
+    </div>
   </div>
+</section>
 
-  <main id="interface">
-    <header class="hero-section">
-      <div class="hero-content">
-        <div class="status-badge">SOFTWARE ENGINEER & ARCHITECT</div>
-        <h1>Code that connects <br />Hardware to Cloud.</h1>
-        <p class="hero-sub">
-          I am a programmer first. I architect secure systems by bridging the gap between low-level firmware and high-level cloud infrastructure.
-        </p>
-
-        <div class="hero-actions">
-          <a href="#projects" class="btn primary-btn">View Projects</a>
-
-          <!-- Added rel for security -->
-          <a href="Malik_Khelfah_CV.pdf" target="_blank" rel="noopener noreferrer" class="btn secondary-btn">
-            <i class="fa-solid fa-download" aria-hidden="true"></i> Resume
-          </a>
-        </div>
+<!-- SKILLS -->
+<section id="skills">
+  <p class="section-label reveal">Core Skills</p>
+  <h2 class="section-title reveal">What I Work<br>With <span>Daily</span></h2>
+  <div class="skills-grid">
+    <div class="skill-cat reveal">
+      <div class="skill-cat-title">Languages</div>
+      <div class="skill-tags">
+        <span class="tag">Python</span><span class="tag">JavaScript</span>
+        <span class="tag">HTML</span><span class="tag">CSS</span>
+        <span class="tag">SQL</span><span class="tag">Java</span><span class="tag">C++</span>
       </div>
-    </header>
-
-    <section id="about" class="grid-section">
-      <div class="panel full-width">
-        <h2>About Me</h2>
-        <div class="about-content">
-          <div class="about-text">
-            <p>
-              I specialize in <strong>Software Development</strong> and <strong>System Architecture</strong>. Unlike traditional cybersecurity analysts who only protect systems, I <em>build</em> them. I write the code that runs on the hardware, I develop the backend logic in Python/Java, and I secure the cloud infrastructure.
-            </p>
-
-            <div style="margin-top: 25px; border-top: 1px solid var(--border); padding-top: 20px;">
-              <h3 style="font-size: 1rem; color: #fff; margin-bottom: 10px;">Education</h3>
-              <p style="margin-bottom: 5px; color: var(--text-main); font-weight: 600;">
-                <i class="fa-solid fa-graduation-cap" style="color: var(--accent); margin-right: 8px;" aria-hidden="true"></i>
-                BSc. Cybersecurity & Cloud Computing
-              </p>
-              <p style="font-size: 0.9rem; color: var(--text-muted);">
-                Applied Science Private University • Graduated: Jan 2026
-              </p>
-            </div>
-          </div>
-        </div>
+    </div>
+    <div class="skill-cat reveal">
+      <div class="skill-cat-title">Backend & Cloud</div>
+      <div class="skill-tags">
+        <span class="tag">Flask</span><span class="tag">REST APIs</span>
+        <span class="tag">AWS</span><span class="tag">Hetzner</span>
+        <span class="tag">Render</span><span class="tag">Git</span>
       </div>
-    </section>
-
-    <section id="skills" class="grid-section">
-      <div class="panel">
-        <h2><i class="fa-solid fa-code" aria-hidden="true"></i> Technical Skills</h2>
-        <div class="skill-grid">
-          <code class="skill-item">Python</code>
-          <code class="skill-item">Java</code>
-          <code class="skill-item">C++</code>
-          <code class="skill-item">HTML/CSS</code>
-          <code class="skill-item">Ubuntu</code>
-          <code class="skill-item">Wireshark</code>
-          <code class="skill-item">QMK Firmware</code>
-          <code class="skill-item">Kali Linux</code>
-          <code class="skill-item">Splunk SOC</code>
-        </div>
+    </div>
+    <div class="skill-cat reveal">
+      <div class="skill-cat-title">Security</div>
+      <div class="skill-tags">
+        <span class="tag">AES-128</span><span class="tag">3DES</span>
+        <span class="tag">SOC</span><span class="tag">Pen Testing</span>
+        <span class="tag">Kali Linux</span><span class="tag">Wireshark</span>
+        <span class="tag">GRC</span>
       </div>
-
-      <div class="panel">
-        <h2><i class="fa-solid fa-users" aria-hidden="true"></i> Soft Skills</h2>
-        <div class="skill-grid">
-          <span class="skill-item">Teamwork & Collaboration</span>
-          <span class="skill-item">High-Volume Problem Solving</span>
-          <span class="skill-item">Working Under Stress</span>
-          <span class="skill-item">Effective Communication</span>
-          <span class="skill-item">Customer Handling</span>
-        </div>
+    </div>
+    <div class="skill-cat reveal">
+      <div class="skill-cat-title">Hardware & Systems</div>
+      <div class="skill-tags">
+        <span class="tag">Arduino</span><span class="tag">PCB Design</span>
+        <span class="tag">QMK Firmware</span><span class="tag">PC Repair</span>
+        <span class="tag">Networking</span><span class="tag">NFC</span>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
 
-    <section id="experience" class="grid-section">
-      <div class="panel full-width">
-        <h2>Experience</h2>
+<!-- PROJECTS -->
+<section id="projects">
+  <p class="section-label reveal">Portfolio</p>
+  <h2 class="section-title reveal">Selected <span>Projects</span></h2>
+  <div class="projects-grid">
 
-        <article class="log-entry">
-          <div class="log-header">
-            <h3>Cybersecurity Intern</h3>
-            <span class="company-name">IT SECURITY C&amp;T</span>
-          </div>
-          <div class="log-meta">
-            <span>Amman, Jordan</span> • <span>Jun 2025 - Sep 2025</span>
-          </div>
-          <p class="log-desc">
-            Completed 16 weeks of intensive field operations. Gained practical knowledge in SOC operations, incident response, and securing digital environments against vulnerabilities.
-          </p>
-          <div class="log-tags">
-            <span>Network Defense</span>
-            <span>Ethical Hacking</span>
-            <span>Digital Forensics</span>
-          </div>
-        </article>
-
-        <article class="log-entry" style="margin-top: 40px;">
-          <div class="log-header">
-            <h3>Customer Support Representative</h3>
-            <span class="company-name">CRYSTEL</span>
-          </div>
-          <div class="log-meta">
-            <span>Amman, Jordan</span> • <span>Feb 2022 – Jun 2022</span>
-          </div>
-          <p class="log-desc">
-            Worked in a high-paced team environment handling large volumes of customer inquiries. Developed strong stress management skills and professionalism while solving complex client issues efficiently.
-          </p>
-          <div class="log-tags">
-            <span>Team Collaboration</span>
-            <span>Crisis Management</span>
-            <span>Communication</span>
-          </div>
-        </article>
+    <div class="project-card reveal">
+      <div class="project-num">01 / LIVE</div>
+      <div class="project-title">StegLens</div>
+      <div class="project-desc">Secure web app for concealed data exchange using steganography and AES-128 encryption. Full Flask REST API backend with responsive frontend, deployed live.</div>
+      <div class="project-tech">
+        <span class="tech-pill">Python</span><span class="tech-pill">Flask</span>
+        <span class="tech-pill">AES-128</span><span class="tech-pill">REST API</span>
+        <span class="tech-pill">Render</span>
       </div>
-    </section>
-
-    <section id="projects" class="grid-section">
-      <div class="full-width" style="margin-bottom: -10px;">
-        <h2>My Projects</h2>
-        <p style="color: var(--text-muted);">Software and hardware architectures I personally designed and engineered.</p>
+      <div class="project-links">
+        <a href="https://github.com/steglens/Steg-Lens" target="_blank" rel="noopener" class="project-link">GitHub →</a>
+        <a href="https://steglens.online" target="_blank" rel="noopener" class="project-link">Live →</a>
       </div>
+    </div>
 
-      <article class="panel product-card full-width" onclick="window.open('https://macroflow.info', '_blank')" role="link" tabindex="0">
-        <div class="prod-content">
-          <div class="badge-container">
-            <div class="prod-badge">COMMERCIAL PRODUCT</div>
-          </div>
-
-          <!-- Changed project titles to H3 for cleaner heading structure -->
-          <h3>MacroFlow System</h3>
-
-          <p class="role-text" style="margin-top: 5px; margin-bottom: 10px;">
-            <span style="color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; border: 1px solid var(--accent); padding: 2px 8px; border-radius: 4px;">
-              MY ROLE: Lead Engineer
-            </span>
-          </p>
-
-          <p>
-            I engineered this complete ecosystem—hardware and software—specifically for commercial sale. I built the custom PCB using QMK firmware and developed the full support platform using Python, HTML, CSS, and JavaScript.
-          </p>
-
-          <div class="tags">
-            <span>QMK Firmware</span><span>Python</span><span>HTML/JS</span><span>Hardware Sales</span>
-          </div>
-        </div>
-
-        <div class="prod-visual">
-          <i class="fa-solid fa-microchip" aria-hidden="true"></i>
-        </div>
-      </article>
-
-      <article class="panel project-card" onclick="window.open('https://steglens.online', '_blank')" role="link" tabindex="0">
-        <div class="icon-box"><i class="fa-solid fa-user-secret" aria-hidden="true"></i></div>
-        <div class="proj-text">
-          <h3>Steglens</h3>
-
-          <p class="role-text" style="margin-top: 5px; margin-bottom: 10px;">
-            <span style="color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; border: 1px solid var(--accent); padding: 2px 8px; border-radius: 4px;">
-              MY ROLE: Graduation Project Lead
-            </span>
-          </p>
-
-          <p>
-            My graduation project designed to democratize security. I built a user-friendly backend that allows regular users to easily use advanced steganography tools without technical knowledge.
-          </p>
-
-          <!-- Removed duplicate "Python" -->
-          <div class="tags">
-            <span>Python</span><span>Cryptography</span><span>HTML/CSS</span><span>JavaScript</span>
-          </div>
-        </div>
-      </article>
-
-      <article class="panel project-card" onclick="window.open('https://phoenix-pub.com', '_blank')" role="link" tabindex="0">
-        <div class="icon-box"><i class="fa-solid fa-server" aria-hidden="true"></i></div>
-        <div class="proj-text">
-          <h3>Phoenix-Pub</h3>
-
-          <p class="role-text" style="margin-top: 5px; margin-bottom: 10px;">
-            <span style="color: var(--accent); font-weight: 700; text-transform: uppercase; font-size: 0.8rem; border: 1px solid var(--accent); padding: 2px 8px; border-radius: 4px;">
-              MY ROLE: System Architect
-            </span>
-          </p>
-
-          <p>
-            A comprehensive digital platform built for a publishing house. I architected the entire website using HTML, CSS, JavaScript, and Python to handle inventory and publishing workflows.
-          </p>
-
-          <div class="tags"><span>Python</span><span>HTML/CSS</span><span>JavaScript</span></div>
-        </div>
-      </article>
-    </section>
-
-    <section id="contact" class="grid-section">
-      <div class="panel full-width contact-panel">
-        <h2>Get In Touch</h2>
-        <p>Open for programming and engineering opportunities.</p>
-
-        <div class="social-grid">
-          <a
-            href="https://www.linkedin.com/in/malik-khelfah?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-          >
-            <i class="fa-brands fa-linkedin" aria-hidden="true"></i> LinkedIn
-          </a>
-
-          <a href="https://github.com/wmalikkh" target="_blank" rel="noopener noreferrer" class="social-link">
-            <i class="fa-brands fa-github" aria-hidden="true"></i> GitHub
-          </a>
-
-          <a href="https://x.com/wmalik_kh?s=21" target="_blank" rel="noopener noreferrer" class="social-link">
-            <i class="fa-brands fa-x-twitter" aria-hidden="true"></i> Twitter
-          </a>
-
-          <a href="https://t.me/WMALIK_KH" target="_blank" rel="noopener noreferrer" class="social-link">
-            <i class="fa-brands fa-telegram" aria-hidden="true"></i> Telegram
-          </a>
-
-          <a
-            href="https://www.instagram.com/wmalik_kh?igsh=a2ExMzZzajhqbmw%3D&utm_source=qr"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="social-link"
-          >
-            <i class="fa-brands fa-instagram" aria-hidden="true"></i> Instagram
-          </a>
-        </div>
+    <div class="project-card reveal">
+      <div class="project-num">02 / DEPLOYED</div>
+      <div class="project-title">Phoenix-Pub</div>
+      <div class="project-desc">Full digital publishing platform with a secure Flask admin interface, session authentication, database logic, and cloud deployment on Hetzner.</div>
+      <div class="project-tech">
+        <span class="tech-pill">Python</span><span class="tech-pill">Flask</span>
+        <span class="tech-pill">SQL</span><span class="tech-pill">Hetzner</span>
       </div>
-    </section>
+      <div class="project-links">
+        <span class="project-link private"><i class="fa-solid fa-lock" style="font-size:.65rem;margin-right:.4rem;"></i>Private Repository</span>
+      </div>
+    </div>
 
-    <footer class="sys-footer">
-      <p>&copy; 2026 Malik Khelfah. All rights reserved.</p>
-    </footer>
-  </main>
+    <div class="project-card reveal">
+      <div class="project-num">03 / COMMERCIAL</div>
+      <div class="project-title">MacroFlow</div>
+      <div class="project-desc">Commercial macropad ecosystem — custom PCB, QMK C++ firmware, and a Python desktop app for real-time hardware-to-OS interaction. Shipped to market.</div>
+      <div class="project-tech">
+        <span class="tech-pill">C++</span><span class="tech-pill">Python</span>
+        <span class="tech-pill">QMK</span><span class="tech-pill">PCB Design</span>
+      </div>
+      <div class="project-links">
+        <a href="https://github.com/wmalikkh" target="_blank" rel="noopener" class="project-link">GitHub →</a>
+      </div>
+    </div>
 
-  <script src="script.js"></script>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <p class="section-label reveal">Experience</p>
+  <h2 class="section-title reveal">Where I've <span>Been</span></h2>
+  <div class="timeline">
+    <div class="tl-item reveal">
+      <div class="tl-date">Jun 2025 – Sep 2025</div>
+      <div class="tl-title">Cybersecurity Intern</div>
+      <div class="tl-company">IT SECURITY C&T — Amman, Jordan</div>
+      <ul class="tl-desc">
+        <li>SOC monitoring and network defense operations</li>
+        <li>Ethical hacking and vulnerability assessments</li>
+        <li>Digital Forensics and GRC hands-on experience</li>
+      </ul>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-date">2021 – 2022</div>
+      <div class="tl-title">PC Technician</div>
+      <div class="tl-company">Saqer — Amman, Jordan</div>
+      <ul class="tl-desc">
+        <li>Diagnosed and repaired hardware faults across desktops and laptops</li>
+        <li>Component replacement — motherboards, GPUs, RAM, storage</li>
+        <li>Built and maintained personal PC setups</li>
+      </ul>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-date">Feb 2022 – Jun 2022</div>
+      <div class="tl-title">Customer Support Representative</div>
+      <div class="tl-company">CRYSTEL — Amman, Jordan</div>
+      <ul class="tl-desc">
+        <li>High-volume customer inquiries in a fast-paced call center</li>
+        <li>Crisis management and problem-solving under pressure</li>
+      </ul>
+    </div>
+    <div class="tl-item reveal">
+      <div class="tl-date">Graduated Jan 2026</div>
+      <div class="tl-title">B.Sc. Cybersecurity & Cloud Computing</div>
+      <div class="tl-company">Applied Science Private University — Amman, Jordan</div>
+      <ul class="tl-desc">
+        <li>Labs: Python, Java, SQL, C++, Data Structures</li>
+        <li>Courses: Pen Testing, Mobile App Security, Blockchain Security, Digital Forensics, Intro to ML</li>
+        <li>Cloud infrastructure labs using AWS · Multiple CTF competitions</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <p class="section-label reveal">Get In Touch</p>
+  <h2 class="section-title reveal">Let's <span>Connect</span></h2>
+  <div class="contact-inner reveal">
+    <p class="contact-sub">Open to junior full stack and backend developer roles in Amman. If you have a project or position in mind — reach out directly.</p>
+
+    <div class="contact-links">
+      <a href="tel:+962792554445" class="contact-link">
+        <div class="contact-link-icon"><i class="fa-solid fa-phone"></i></div>
+        +962 792 554 445
+      </a>
+      <a href="mailto:Malik.khelfah.it@gmail.com" class="contact-link">
+        <div class="contact-link-icon"><i class="fa-solid fa-envelope"></i></div>
+        Malik.khelfah.it@gmail.com
+      </a>
+      <a href="https://www.linkedin.com/in/malik-khelfah" target="_blank" rel="noopener" class="contact-link">
+        <div class="contact-link-icon"><i class="fa-brands fa-linkedin"></i></div>
+        linkedin.com/in/malik-khelfah
+      </a>
+      <a href="https://github.com/wmalikkh" target="_blank" rel="noopener" class="contact-link">
+        <div class="contact-link-icon"><i class="fa-brands fa-github"></i></div>
+        github.com/wmalikkh
+      </a>
+      <a href="https://x.com/wmalik_kh" target="_blank" rel="noopener" class="contact-link">
+        <div class="contact-link-icon"><i class="fa-brands fa-x-twitter"></i></div>
+        x.com/wmalik_kh
+      </a>
+      <a href="https://t.me/WMALIK_KH" target="_blank" rel="noopener" class="contact-link">
+        <div class="contact-link-icon"><i class="fa-brands fa-telegram"></i></div>
+        t.me/WMALIK_KH
+      </a>
+      <a href="https://www.instagram.com/wmalik_kh" target="_blank" rel="noopener" class="contact-link">
+        <div class="contact-link-icon"><i class="fa-brands fa-instagram"></i></div>
+        instagram.com/wmalik_kh
+      </a>
+    </div>
+
+    <a href="Malik_Khelfah_CV.pdf" target="_blank" rel="noopener noreferrer" class="contact-dl">
+      <i class="fa-solid fa-download"></i> Download CV
+    </a>
+  </div>
+</section>
+
+<footer>
+  <span>MALIK KHELFAH</span>
+  <p>Built with code · Amman, Jordan · 2026</p>
+</footer>
+
+<script>
+// CURSOR
+const cursor=document.getElementById('cursor');
+const ring=document.getElementById('cursor-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cursor.style.left=mx+'px';cursor.style.top=my+'px';
+});
+function animRing(){
+  rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
+  ring.style.left=rx+'px';ring.style.top=ry+'px';
+  requestAnimationFrame(animRing);
+}
+animRing();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.style.width='18px';cursor.style.height='18px';ring.style.width='48px';ring.style.height='48px';});
+  el.addEventListener('mouseleave',()=>{cursor.style.width='10px';cursor.style.height='10px';ring.style.width='36px';ring.style.height='36px';});
+});
+
+// PARTICLES
+const canvas=document.getElementById('canvas-bg');
+const ctx=canvas.getContext('2d');
+let W,H,particles=[];
+function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;}
+resize();window.addEventListener('resize',()=>{resize();init();});
+class Particle{
+  constructor(){
+    this.x=Math.random()*W;this.y=Math.random()*H;
+    this.vx=(Math.random()-.5)*.35;this.vy=(Math.random()-.5)*.35;
+    this.r=Math.random()*1.8+.8;this.alpha=Math.random()*.4+.15;
+  }
+  update(){
+    this.x+=this.vx;this.y+=this.vy;
+    if(this.x<0||this.x>W)this.vx*=-1;
+    if(this.y<0||this.y>H)this.vy*=-1;
+  }
+  draw(){
+    ctx.beginPath();ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+    ctx.fillStyle=`rgba(139,92,246,${this.alpha})`;ctx.fill();
+  }
+}
+function init(){particles=[];for(let i=0;i<85;i++)particles.push(new Particle());}
+function drawLines(){
+  for(let i=0;i<particles.length;i++){
+    for(let j=i+1;j<particles.length;j++){
+      const d=Math.hypot(particles[i].x-particles[j].x,particles[i].y-particles[j].y);
+      if(d<130){
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x,particles[i].y);
+        ctx.lineTo(particles[j].x,particles[j].y);
+        ctx.strokeStyle=`rgba(139,92,246,${.12*(1-d/130)})`;
+        ctx.lineWidth=.5;ctx.stroke();
+      }
+    }
+  }
+}
+function loop(){
+  ctx.clearRect(0,0,W,H);
+  particles.forEach(p=>{p.update();p.draw();});
+  drawLines();requestAnimationFrame(loop);
+}
+init();loop();
+document.addEventListener('mousemove',e=>{
+  particles.forEach(p=>{
+    const d=Math.hypot(e.clientX-p.x,e.clientY-p.y);
+    if(d<100){
+      const a=Math.atan2(p.y-e.clientY,p.x-e.clientX);
+      p.vx+=Math.cos(a)*.4;p.vy+=Math.sin(a)*.4;
+      p.vx=Math.max(-2,Math.min(2,p.vx));
+      p.vy=Math.max(-2,Math.min(2,p.vy));
+    }
+  });
+});
+
+// TYPEWRITER
+const phrases=["Building secure web applications.","Python · Flask · Full Stack.","From idea to live deployment.","Based in Amman, Jordan."];
+let pi=0,ci=0,deleting=false;
+const tw=document.querySelector('#typewriter span');
+function type(){
+  const phrase=phrases[pi];
+  if(!deleting){
+    tw.textContent=phrase.slice(0,++ci);
+    if(ci===phrase.length){deleting=true;setTimeout(type,2000);return;}
+  }else{
+    tw.textContent=phrase.slice(0,--ci);
+    if(ci===0){deleting=false;pi=(pi+1)%phrases.length;}
+  }
+  setTimeout(type,deleting?40:80);
+}
+setTimeout(type,1400);
+
+// SCROLL REVEAL
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:.12});
+document.querySelectorAll('.reveal,.reveal-left').forEach(el=>obs.observe(el));
+
+// ACTIVE NAV
+const sections=document.querySelectorAll('section[id]');
+const navLinks=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let cur='';
+  sections.forEach(s=>{if(window.scrollY>=s.offsetTop-200)cur=s.id;});
+  navLinks.forEach(a=>{
+    a.classList.remove('active');
+    if(a.getAttribute('href')==='#'+cur)a.classList.add('active');
+  });
+});
+</script>
 </body>
 </html>
